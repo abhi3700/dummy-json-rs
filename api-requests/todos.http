@@ -1,0 +1,65 @@
+@host=https://dummyjson.com/todos
+
+###
+# @name GetAllTodos
+GET {{host}}
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name GetTodoById
+GET {{host}}/1
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name GetRandomTodo
+GET {{host}}/random
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name GetRandomTodos
+GET {{host}}/random/3
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name LimitSkipTodos
+GET {{host}}?limit=3&skip=10
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name GetAllTodosOfUser
+GET {{host}}/user/1
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name AddTodo
+POST {{host}}/add
+Accept: application/json
+Content-Type: application/json
+
+{
+	"todo": "Use DummyJSON in the project",
+	"completed": false,
+	"userId": 5
+}
+
+###
+# @name UpdateTodo
+PUT {{host}}/1
+Accept: application/json
+Content-Type: application/json
+
+{
+	"completed": true
+}
+
+###
+# @name DeleteTodo
+DELETE {{host}}/1
+Accept: application/json
+Content-Type: application/json
