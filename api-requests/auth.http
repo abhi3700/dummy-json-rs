@@ -1,8 +1,8 @@
-@host=https://dummyjson.com
+@host=https://dummyjson.com/auth
 
 ###
 # @name LoginUser
-POST {{host}}/auth/login
+POST {{host}}/login
 Accept: application/json
 Content-Type: application/json
 
@@ -15,7 +15,7 @@ Content-Type: application/json
 ###
 # @name GetUser
 @YOUR_ACCESS_TOKEN={{LoginUser.response.body.accessToken}}
-GET {{host}}/auth/me
+GET {{host}}/me
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{YOUR_ACCESS_TOKEN}}
@@ -23,7 +23,7 @@ Authorization: Bearer {{YOUR_ACCESS_TOKEN}}
 ###
 # @name RefreshAuthSession
 @YOUR_REFRESH_TOKEN={{LoginUser.response.body.refreshToken}}
-POST {{host}}/auth/refresh
+POST {{host}}/refresh
 Accept: application/json
 Content-Type: application/json
 
