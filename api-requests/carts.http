@@ -1,0 +1,72 @@
+@host=https://dummyjson.com/carts
+
+###
+# @name GetCarts
+GET {{host}}
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name GetCartById
+@id=1
+GET {{host}}/{{id}}
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name GetCartsOfUser   
+@user_id=33
+GET {{host}}/user/{{user_id}}
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name AddCart
+@user_id=33
+POST {{host}}/add
+Accept: application/json
+Content-Type: application/json
+
+{
+    "userId": {{user_id}},
+    "products": [
+        {
+            "id": 144,
+            "quantity": 4
+        },
+        {
+            "id": 98,
+            "quantity": 1
+        }
+    ]
+}
+
+###
+# @name UpdateCart
+@cart_id=50
+@user_id=34
+PUT {{host}}/{{cart_id}}
+Accept: application/json
+Content-Type: application/json
+
+{
+    "userId": {{user_id}},
+    "merge": true,
+    "products": [
+        {
+            "id": 145,
+            "quantity": 4
+        },
+        {
+            "id": 98,
+            "quantity": 1
+        }
+    ]
+}
+
+###
+# @name DeleteCart
+@cart_id=50
+DELETE {{host}}/{{cart_id}}
+Accept: application/json
+Content-Type: application/json
