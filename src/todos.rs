@@ -7,9 +7,9 @@ use reqwest::Error;
 use serde::Deserialize;
 use serde_json::json;
 
-static TODOS_BASE_URL: Lazy<String> = Lazy::new(|| format!("{}/todos", API_BASE_URL));
+const TODOS_BASE_URL: Lazy<String> = Lazy::new(|| format!("{}/todos", API_BASE_URL));
 
-/// Todo
+/// Todo item
 #[derive(Deserialize, Debug)]
 pub struct Todo {
 	pub id: u32,

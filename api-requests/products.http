@@ -1,0 +1,82 @@
+@host=https://dummyjson.com/products
+
+###
+# @name GetAllProducts
+GET {{host}}
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name GetProductById
+GET {{host}}/1
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name SearchProducts
+GET {{host}}/search?q=phone
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name LimitAndSkipProducts
+GET {{host}}?limit=1&skip=10&select=title,price
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name SortProducts
+GET {{host}}?sortBy=title&order=asc
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name ProductCategories
+GET {{host}}/categories
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name ProductCategoriesList
+GET {{host}}/category-list
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name GetProductsByCategory
+GET {{host}}/category/smartphones
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name AddProduct
+POST {{host}}/add
+Accept: application/json
+Content-Type: application/json
+
+{
+	"title": "iPhone 9",
+	"description": "An apple mobile which is nothing like apple",
+	"price": 549,
+	"discountPercentage": 12.96,
+	"rating": 4.69,
+	"stock": 94,
+	"brand": "Apple",
+	"category": "smartphones"
+}
+
+###
+# @name UpdateProduct
+PUT {{host}}/1
+Accept: application/json
+Content-Type: application/json
+
+{
+	"title": "iPhone 18"
+}
+
+###
+# @name DeleteProduct
+DELETE {{host}}/1
+Accept: application/json
+Content-Type: application/json

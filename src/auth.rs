@@ -9,7 +9,7 @@ use once_cell::sync::Lazy;
 use serde::{Deserialize, Serialize};
 use serde_json::json;
 
-static AUTH_BASE_URL: Lazy<String> = Lazy::new(|| format!("{}/auth", API_BASE_URL));
+const AUTH_BASE_URL: Lazy<String> = Lazy::new(|| format!("{}/auth", API_BASE_URL));
 
 /// Login request payload
 #[derive(Serialize)]
@@ -66,7 +66,7 @@ pub struct User {
 	#[serde(rename = "eyeColor")]
 	pub eye_color: String,
 	pub hair: Hair,
-	// Other fields
+	// TODO: Other fields
 }
 
 #[derive(Deserialize, Debug)]
