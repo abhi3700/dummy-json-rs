@@ -1,0 +1,43 @@
+@host=https://dummyjson.com/recipes
+
+###
+# @name GetAllRecipes
+GET {{host}}
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name GetRecipeById
+GET {{host}}/1
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name SearchRecipes
+GET {{host}}/search?q=pizza
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name LimitAndSkipRecipes
+GET {{host}}?limit=10&skip=10&select=name,image
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name SortRecipes
+GET {{host}}?sortBy=name&order=asc
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name GetRecipesByTags
+GET {{host}}/tags
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name GetRecipesByMealType
+GET {{host}}/meal-type/snack
+Accept: application/json
+Content-Type: application/json
