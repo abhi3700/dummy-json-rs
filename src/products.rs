@@ -2,7 +2,7 @@ use crate::{DummyJsonClient, API_BASE_URL};
 use once_cell::sync::Lazy;
 use serde::{Deserialize, Serialize};
 
-const PRODUCTS_BASE_URL: Lazy<String> = Lazy::new(|| format!("{}/products", API_BASE_URL));
+static PRODUCTS_BASE_URL: Lazy<String> = Lazy::new(|| format!("{}/products", API_BASE_URL));
 
 #[derive(Deserialize, Debug)]
 pub struct Product {

@@ -7,7 +7,7 @@ use reqwest::Error;
 use serde::Deserialize;
 use serde_json::json;
 
-const TODOS_BASE_URL: Lazy<String> = Lazy::new(|| format!("{}/todos", API_BASE_URL));
+static TODOS_BASE_URL: Lazy<String> = Lazy::new(|| format!("{}/todos", API_BASE_URL));
 
 /// Todo item
 #[derive(Deserialize, Debug)]

@@ -9,7 +9,7 @@ use once_cell::sync::Lazy;
 use serde::{Deserialize, Serialize};
 use serde_json::json;
 
-const AUTH_BASE_URL: Lazy<String> = Lazy::new(|| format!("{}/auth", API_BASE_URL));
+static AUTH_BASE_URL: Lazy<String> = Lazy::new(|| format!("{}/auth", API_BASE_URL));
 
 /// Login request payload
 #[derive(Serialize)]
