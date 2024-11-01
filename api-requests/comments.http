@@ -1,0 +1,55 @@
+@host=https://dummyjson.com/comments
+
+###
+# @name GetAllComments
+GET {{host}}
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name GetCommentById
+@id=1
+GET {{host}}/{{id}}
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name LimitAndSkipComments
+GET {{host}}?limit=10&skip=10&select=body,postId
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name GetCommmentsByPostId
+@postId=1
+GET {{host}}?postId={{postId}}
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name AddComment
+POST {{host}}/add
+Accept: application/json
+Content-Type: application/json
+
+{
+    "body": "This makes all sense to me!",
+    "postId": 3,
+    "userId": 5
+}
+
+###
+# @name UpdateComment
+PUT {{host}}/{{id}}
+Accept: application/json
+Content-Type: application/json
+
+{
+    "body": "This makes all sense to me! - updated"
+}
+
+###
+# @name DeleteComment
+DELETE {{host}}/{{id}}
+Accept: application/json
+Content-Type: application/json
