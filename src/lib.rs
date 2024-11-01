@@ -3,6 +3,7 @@ mod carts;
 mod comments;
 mod posts;
 mod products;
+mod quotes;
 mod recipes;
 mod todos;
 
@@ -11,6 +12,7 @@ pub use carts::*;
 pub use comments::*;
 pub use posts::*;
 pub use products::*;
+pub use quotes::*;
 pub use recipes::*;
 use reqwest::Client;
 pub use todos::*;
