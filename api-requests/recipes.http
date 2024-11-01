@@ -31,13 +31,21 @@ Accept: application/json
 Content-Type: application/json
 
 ###
-# @name GetRecipesByTags
+# @name GetRecipesTags
 GET {{host}}/tags
 Accept: application/json
 Content-Type: application/json
 
 ###
+# @name GetRecipesByTags
+@tags=pakistani
+GET {{host}}/tag/{{tags}}
+Accept: application/json
+Content-Type: application/json
+
+###
 # @name GetRecipesByMealType
-GET {{host}}/meal-type/snack
+@meal_type=snack
+GET {{host}}/meal-type/{{meal_type}}
 Accept: application/json
 Content-Type: application/json
