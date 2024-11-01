@@ -1,0 +1,32 @@
+@host=https://dummyjson.com/quotes
+
+###
+# @name GetAllQuotes
+GET {{host}}
+Accept: application/json
+Content-Type: application/json
+
+
+###
+# @name GetQuoteById
+GET {{host}}/1
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name GetRandomQuote
+GET {{host}}/random
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name GetRandomQuotes
+GET {{host}}/random/3
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name LimitSkipQuotes
+GET {{host}}?limit=3&skip=10
+Accept: application/json
+Content-Type: application/json

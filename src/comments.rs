@@ -35,7 +35,7 @@ pub struct GetAllComments {
 #[derive(Deserialize, Debug)]
 pub struct DeleteCommentResponse {
 	#[serde(flatten)]
-	other_fields: Comment,
+	pub other_fields: Comment,
 	#[serde(rename = "isDeleted")]
 	pub is_deleted: bool,
 	#[serde(rename = "deletedOn")]
