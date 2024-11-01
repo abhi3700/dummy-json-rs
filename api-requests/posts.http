@@ -1,0 +1,96 @@
+@host=https://dummyjson.com/posts
+
+###
+# @name GetAllPosts
+GET {{host}}
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name GetPostById
+@id=1
+GET {{host}}/{{id}}
+Accept: application/json
+Content-Type: application/json
+
+
+###
+# @name SearchPosts
+@search=love
+GET {{host}}/search?q={{search}}
+Accept: application/json
+Content-Type: application/json
+
+
+###
+# @name LimitAndSkipPosts
+GET {{host}}?limit=10&skip=10&select=title,reactions,userId
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name SortPosts
+GET {{host}}?sortBy=title&order=desc
+Accept: application/json
+Content-Type: application/json
+
+
+###
+# @name GetAllPostsTags
+GET {{host}}/tags
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name GetPostsByTags
+@tags=nature
+GET {{host}}/tag/{{tags}}
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name GetPostsByUserId
+@userId=1
+GET {{host}}/user/{{userId}}
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name GetPostComments
+@id=1
+GET {{host}}/{{id}}/comments
+Accept: application/json
+Content-Type: application/json
+
+
+###
+# @name AddPost
+POST {{host}}/add
+Accept: application/json
+Content-Type: application/json
+
+{
+    "title": "test title",
+    "body": "test body",
+    "userId": 1,
+    "tags": ["nature", "photography"]
+}
+
+###
+# @name UpdatePost
+@id=1
+PUT {{host}}/{{id}}
+Accept: application/json
+Content-Type: application/json
+
+{
+    "title": "updated title",
+    "body": "updated body"
+}
+
+###
+# @name DeletePost
+@id=1
+DELETE {{host}}/{{id}}
+Accept: application/json
+Content-Type: application/json

@@ -53,7 +53,7 @@ impl DummyJsonClient {
 	/// Get recipe by id
 	pub async fn get_recipe_by_id(&self, id: u32) -> Result<Recipe, reqwest::Error> {
 		self.client
-			.get(format!("{}/{}", &*RECIPES_BASE_URL, id))
+			.get(format!("{}/{}", RECIPES_BASE_URL.as_str(), id))
 			.send()
 			.await?
 			.json::<Recipe>()
@@ -66,7 +66,7 @@ impl DummyJsonClient {
 		query: &str,
 	) -> Result<GetAllRecipesResponse, reqwest::Error> {
 		self.client
-			.get(format!("{}/search?q={}", &*RECIPES_BASE_URL, query))
+			.get(format!("{}/search?q={}", RECIPES_BASE_URL.as_str(), query))
 			.send()
 			.await?
 			.json::<GetAllRecipesResponse>()
@@ -83,7 +83,10 @@ impl DummyJsonClient {
 		self.client
 			.get(format!(
 				"{}/?limit={}&skip={}&select={}",
-				&*RECIPES_BASE_URL, limit, skip, selects
+				RECIPES_BASE_URL.as_str(),
+				limit,
+				skip,
+				selects
 			))
 			.send()
 			.await?
@@ -99,7 +102,7 @@ impl DummyJsonClient {
 		order: &str,
 	) -> Result<GetAllRecipesResponse, reqwest::Error> {
 		self.client
-			.get(format!("{}/?sortBy={}&order={}", &*RECIPES_BASE_URL, sort_by, order))
+			.get(format!("{}/?sortBy={}&order={}", RECIPES_BASE_URL.as_str(), sort_by, order))
 			.send()
 			.await?
 			.json::<GetAllRecipesResponse>()
@@ -109,7 +112,7 @@ impl DummyJsonClient {
 	/// Get recipes tags
 	pub async fn get_recipes_tags(&self) -> Result<Vec<String>, reqwest::Error> {
 		self.client
-			.get(format!("{}/tags", &*RECIPES_BASE_URL))
+			.get(format!("{}/tags", RECIPES_BASE_URL.as_str()))
 			.send()
 			.await?
 			.json::<Vec<String>>()
@@ -122,7 +125,7 @@ impl DummyJsonClient {
 		tags: &str,
 	) -> Result<GetAllRecipesResponse, reqwest::Error> {
 		self.client
-			.get(format!("{}/tag/{}", &*RECIPES_BASE_URL, tags))
+			.get(format!("{}/tag/{}", RECIPES_BASE_URL.as_str(), tags))
 			.send()
 			.await?
 			.json::<GetAllRecipesResponse>()
@@ -135,7 +138,7 @@ impl DummyJsonClient {
 		meal_type: &str,
 	) -> Result<GetAllRecipesResponse, reqwest::Error> {
 		self.client
-			.get(format!("{}/meal-type/{}", &*RECIPES_BASE_URL, meal_type))
+			.get(format!("{}/meal-type/{}", RECIPES_BASE_URL.as_str(), meal_type))
 			.send()
 			.await?
 			.json::<GetAllRecipesResponse>()
