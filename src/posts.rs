@@ -46,7 +46,7 @@ pub struct PostComment {
 	pub user: UserProfile,
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct UserProfile {
 	pub id: u32,
 	pub username: String,

@@ -1,5 +1,6 @@
 mod auth;
 mod carts;
+mod comments;
 mod posts;
 mod products;
 mod recipes;
@@ -7,6 +8,7 @@ mod todos;
 
 pub use auth::*;
 pub use carts::*;
+pub use comments::*;
 pub use posts::*;
 pub use products::*;
 pub use recipes::*;
