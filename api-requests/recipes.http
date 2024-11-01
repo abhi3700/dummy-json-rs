@@ -38,7 +38,7 @@ Content-Type: application/json
 
 ###
 # @name GetRecipesByTags
-@tags=pakistani
+@tags=biryani
 GET {{host}}/tag/{{tags}}
 Accept: application/json
 Content-Type: application/json
