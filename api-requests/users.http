@@ -1,0 +1,109 @@
+@host=https://dummyjson.com/users
+
+###
+# @name GetAllUsers
+GET {{host}}
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name LoginUserGetTokens
+POST {{host}}/login
+Accept: application/json
+Content-Type: application/json
+
+{
+    "username": "emilys",
+    "password": "emilyspass",
+    "expiresInMins": 30
+}
+
+###
+# @name GetCurrentAuthenticatedUser
+@YOUR_ACCESS_TOKEN={{LoginUserGetTokens.response.body.accessToken}}
+GET {{host}}/me
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{YOUR_ACCESS_TOKEN}}
+
+###
+# @name GetUserById
+@id=1
+GET {{host}}/{{id}}
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name SearchUsers
+GET {{host}}/search?q=john
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name FilterUsers
+GET {{host}}/filter?key=hair.color&value=Brown
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name LimitSkipUsers
+GET {{host}}?limit=3&skip=10&select=firstName,age
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name SortUsers
+GET {{host}}/?sortBy=age&order=desc
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name GetUserCartsByUserId
+@id=6
+GET {{host}}/{{id}}/carts
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name GetUserPostsByUserId
+@id=6
+GET {{host}}/{{id}}/posts
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name GetUserTodosByUserId
+@id=6
+GET {{host}}/{{id}}/todos
+Accept: application/json
+Content-Type: application/json
+
+###
+# @name AddUser
+POST {{host}}/add
+Accept: application/json
+Content-Type: application/json
+
+{
+    "firstName": "John",
+    "lastName": "Doe",
+    "age": 25
+}
+
+###
+# @name UpdateUser
+PUT {{host}}/{{id}}
+Accept: application/json
+Content-Type: application/json
+
+{
+    "lastName": "Owais",
+    "age": 27
+}
+
+###
+# @name DeleteUser
+@id=6
+DELETE {{host}}/{{id}}
+Accept: application/json
+Content-Type: application/json
