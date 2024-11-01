@@ -100,13 +100,13 @@ pub struct DeleteProductResponse {
 impl DummyJsonClient {
 	/// Get all products
 	pub async fn get_all_products(&self) -> Result<GetAllProductsResponse, reqwest::Error> {
-		let response = self.client.get(&*PRODUCTS_BASE_URL).send().await?;
+		let response = self.client.get(PRODUCTS_BASE_URL.as_str()).send().await?;
 		response.json::<GetAllProductsResponse>().await
 	}
 
 	/// Get product by id
 	pub async fn get_product_by_id(&self, id: u32) -> Result<Product, reqwest::Error> {
-		let url = &format!("{}/{}", &*PRODUCTS_BASE_URL, id);
+		let url = &format!("{}/{}", PRODUCTS_BASE_URL.as_str(), id);
 		let response = self.client.get(url).send().await?;
 		response.json::<Product>().await
 	}
@@ -116,7 +116,7 @@ impl DummyJsonClient {
 		&self,
 		query: &str,
 	) -> Result<GetAllProductsResponse, reqwest::Error> {
-		let url = &format!("{}/search?q={}", &*PRODUCTS_BASE_URL, query);
+		let url = &format!("{}/search?q={}", PRODUCTS_BASE_URL.as_str(), query);
 		let response = self.client.get(url).send().await?;
 		response.json::<GetAllProductsResponse>().await
 	}
@@ -128,8 +128,13 @@ impl DummyJsonClient {
 		skip: u32,
 		selects: &str,
 	) -> Result<GetAllProductsResponse, reqwest::Error> {
-		let url =
-			&format!("{}/?limit={}&skip={}&select={}", &*PRODUCTS_BASE_URL, limit, skip, selects);
+		let url = &format!(
+			"{}/?limit={}&skip={}&select={}",
+			PRODUCTS_BASE_URL.as_str(),
+			limit,
+			skip,
+			selects
+		);
 		let response = self.client.get(url).send().await?;
 		response.json::<GetAllProductsResponse>().await
 	}
@@ -140,21 +145,21 @@ impl DummyJsonClient {
 		field: &str,
 		order: &str,
 	) -> Result<GetAllProductsResponse, reqwest::Error> {
-		let url = &format!("{}/?sortBy={}&order={}", &*PRODUCTS_BASE_URL, field, order);
+		let url = &format!("{}/?sortBy={}&order={}", PRODUCTS_BASE_URL.as_str(), field, order);
 		let response = self.client.get(url).send().await?;
 		response.json::<GetAllProductsResponse>().await
 	}
 
 	/// Get product categories
 	pub async fn get_product_categories(&self) -> Result<Vec<ProductCategory>, reqwest::Error> {
-		let url = &format!("{}/categories", &*PRODUCTS_BASE_URL);
+		let url = &format!("{}/categories", PRODUCTS_BASE_URL.as_str());
 		let response = self.client.get(url).send().await?;
 		response.json::<Vec<ProductCategory>>().await
 	}
 
 	/// Get product categories list
 	pub async fn get_product_categories_list(&self) -> Result<Vec<String>, reqwest::Error> {
-		let url = &format!("{}/category-list", &*PRODUCTS_BASE_URL);
+		let url = &format!("{}/category-list", PRODUCTS_BASE_URL.as_str());
 		let response = self.client.get(url).send().await?;
 		response.json::<Vec<String>>().await
 	}
@@ -164,14 +169,14 @@ impl DummyJsonClient {
 		&self,
 		category: &str,
 	) -> Result<GetAllProductsResponse, reqwest::Error> {
-		let url = &format!("{}/category/{}", &*PRODUCTS_BASE_URL, category);
+		let url = &format!("{}/category/{}", PRODUCTS_BASE_URL.as_str(), category);
 		let response = self.client.get(url).send().await?;
 		response.json::<GetAllProductsResponse>().await
 	}
 
 	/// Add product
 	pub async fn add_product(&self, product: &AddProduct) -> Result<Product, reqwest::Error> {
-		let url = &format!("{}/add", &*PRODUCTS_BASE_URL);
+		let url = &format!("{}/add", PRODUCTS_BASE_URL.as_str());
 		let response = self.client.post(url).json(product).send().await?;
 		response.json::<Product>().await
 	}
@@ -182,14 +187,14 @@ impl DummyJsonClient {
 		id: u32,
 		product: &AddProduct,
 	) -> Result<Product, reqwest::Error> {
-		let url = &format!("{}/{}", &*PRODUCTS_BASE_URL, id);
+		let url = &format!("{}/{}", PRODUCTS_BASE_URL.as_str(), id);
 		let response = self.client.put(url).json(product).send().await?;
 		response.json::<Product>().await
 	}
 
 	/// Delete product
 	pub async fn delete_product(&self, id: u32) -> Result<DeleteProductResponse, reqwest::Error> {
-		let url = &format!("{}/{}", &*PRODUCTS_BASE_URL, id);
+		let url = &format!("{}/{}", PRODUCTS_BASE_URL.as_str(), id);
 		let response = self.client.delete(url).send().await?;
 		response.json::<DeleteProductResponse>().await
 	}

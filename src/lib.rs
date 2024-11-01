@@ -1,11 +1,13 @@
 mod auth;
 mod carts;
+mod posts;
 mod products;
 mod recipes;
 mod todos;
 
 pub use auth::*;
 pub use carts::*;
+pub use posts::*;
 pub use products::*;
 pub use recipes::*;
 use reqwest::Client;

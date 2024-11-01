@@ -69,13 +69,13 @@ pub struct DeleteCartResponse {
 impl DummyJsonClient {
 	/// Get all carts
 	pub async fn get_all_carts(&self) -> Result<GetAllCartsResponse, reqwest::Error> {
-		let url = &*CARTS_BASE_URL;
+		let url = CARTS_BASE_URL.as_str();
 		self.client.get(url).send().await?.json::<GetAllCartsResponse>().await
 	}
 
 	/// Get cart by id
 	pub async fn get_cart_by_id(&self, id: u32) -> Result<Cart, reqwest::Error> {
-		let url = format!("{}/{}", &*CARTS_BASE_URL, id);
+		let url = format!("{}/{}", CARTS_BASE_URL.as_str(), id);
 		self.client.get(url).send().await?.json::<Cart>().await
 	}
 
@@ -84,13 +84,13 @@ impl DummyJsonClient {
 		&self,
 		user_id: u32,
 	) -> Result<GetAllCartsResponse, reqwest::Error> {
-		let url = format!("{}/user/{}", &*CARTS_BASE_URL, user_id);
+		let url = format!("{}/user/{}", CARTS_BASE_URL.as_str(), user_id);
 		self.client.get(url).send().await?.json::<GetAllCartsResponse>().await
 	}
 
 	/// Add cart
 	pub async fn add_cart(&self, payload: AddCartPayload) -> Result<Cart, reqwest::Error> {
-		let url = format!("{}/add", &*CARTS_BASE_URL);
+		let url = format!("{}/add", CARTS_BASE_URL.as_str());
 		self.client.post(url).json(&payload).send().await?.json::<Cart>().await
 	}
 
@@ -100,13 +100,13 @@ impl DummyJsonClient {
 		id: u32,
 		payload: UpdateCartPayload,
 	) -> Result<Cart, reqwest::Error> {
-		let url = format!("{}/{}", &*CARTS_BASE_URL, id);
+		let url = format!("{}/{}", CARTS_BASE_URL.as_str(), id);
 		self.client.put(url).json(&payload).send().await?.json::<Cart>().await
 	}
 
 	/// Delete cart
 	pub async fn delete_cart(&self, cart_id: u32) -> Result<DeleteCartResponse, reqwest::Error> {
-		let url = format!("{}/{}", &*CARTS_BASE_URL, cart_id);
+		let url = format!("{}/{}", CARTS_BASE_URL.as_str(), cart_id);
 		self.client.delete(url).send().await?.json::<DeleteCartResponse>().await
 	}
 }

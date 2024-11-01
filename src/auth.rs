@@ -99,14 +99,14 @@ impl DummyJsonClient {
 			expires_in_mins,
 		};
 
-		let url = format!("{}/login", *AUTH_BASE_URL);
+		let url = format!("{}/login", AUTH_BASE_URL.as_str());
 		let response = self.client.post(url).json(&payload).send().await?;
 		response.json().await
 	}
 
 	/// Get the current user
 	pub async fn get_user(&self, access_token: &str) -> Result<User, reqwest::Error> {
-		let url = format!("{}/me", *AUTH_BASE_URL);
+		let url = format!("{}/me", AUTH_BASE_URL.as_str());
 		let response = self
 			.client
 			.get(url)
@@ -127,7 +127,7 @@ impl DummyJsonClient {
 			"expiresInMins": expires_in_mins,
 		});
 
-		let url = format!("{}/refresh", *AUTH_BASE_URL);
+		let url = format!("{}/refresh", AUTH_BASE_URL.as_str());
 		let response = self.client.post(url).json(&payload).send().await?;
 		response.json().await
 	}
