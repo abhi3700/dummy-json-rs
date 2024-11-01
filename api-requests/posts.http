@@ -43,7 +43,7 @@ Content-Type: application/json
 
 ###
 # @name GetPostsByTags
-@tags=life
+@tags=nature
 GET {{host}}/tag/{{tags}}
 Accept: application/json
 Content-Type: application/json
@@ -72,7 +72,8 @@ Content-Type: application/json
 {
     "title": "test title",
     "body": "test body",
-    "userId": 1
+    "userId": 1,
+    "tags": ["nature", "photography"]
 }
 
 ###
