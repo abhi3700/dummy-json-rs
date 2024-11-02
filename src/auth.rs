@@ -16,9 +16,8 @@ static AUTH_BASE_URL: Lazy<String> = Lazy::new(|| format!("{}/auth", API_BASE_UR
 pub struct LoginRequest {
 	pub username: String,
 	pub password: String,
-	/// Expiration time in minutes
 	#[serde(rename = "expiresInMins")]
-	pub expires_in_mins: u32,
+	pub expires_in_mins: Option<u32>,
 }
 
 /// Login response
@@ -41,35 +40,40 @@ pub struct LoginResponse {
 	pub refresh_token: String,
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct User {
 	pub id: u32,
-	#[serde(rename = "firstName")]
-	pub first_name: String,
-	#[serde(rename = "lastName")]
-	pub last_name: String,
-	#[serde(rename = "maidenName")]
-	pub maiden_name: String,
-	pub age: u8,
-	pub gender: String,
-	pub email: String,
-	pub phone: String,
-	pub username: String,
-	pub password: String,
-	#[serde(rename = "birthDate")]
-	pub birth_date: String,
-	pub image: String,
-	#[serde(rename = "bloodGroup")]
-	pub blood_group: String,
-	pub height: f32,
-	pub weight: f32,
-	#[serde(rename = "eyeColor")]
-	pub eye_color: String,
-	pub hair: Hair,
-	// TODO: Other fields
+	#[serde(flatten)]
+	pub other_fields: AddUserPayload,
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Default)]
+pub struct AddUserPayload {
+	#[serde(rename = "firstName")]
+	pub first_name: Option<String>,
+	#[serde(rename = "lastName")]
+	pub last_name: Option<String>,
+	#[serde(rename = "maidenName")]
+	pub maiden_name: Option<String>,
+	pub age: Option<u8>,
+	pub gender: Option<String>,
+	pub email: Option<String>,
+	pub phone: Option<String>,
+	pub username: Option<String>,
+	pub password: Option<String>,
+	#[serde(rename = "birthDate")]
+	pub birth_date: Option<String>,
+	pub image: Option<String>,
+	#[serde(rename = "bloodGroup")]
+	pub blood_group: Option<String>,
+	pub height: Option<f32>,
+	pub weight: Option<f32>,
+	#[serde(rename = "eyeColor")]
+	pub eye_color: Option<String>,
+	pub hair: Option<Hair>,
+	// TODO: Add other fields
+}
+#[derive(Serialize, Deserialize, Debug)]
 pub struct Hair {
 	pub color: String,
 	#[serde(rename = "type")]
@@ -91,7 +95,7 @@ impl DummyJsonClient {
 		&self,
 		username: &str,
 		password: &str,
-		expires_in_mins: u32,
+		expires_in_mins: Option<u32>,
 	) -> Result<LoginResponse, reqwest::Error> {
 		let payload: LoginRequest = LoginRequest {
 			username: username.to_string(),
