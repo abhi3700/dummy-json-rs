@@ -1,7 +1,7 @@
 [package]
 name = "dummy-json-rs"
 description = "Dummy JSON API client in Rust"
-version = "1.0.1"
+version = "1.0.2"
 edition = "2021"
 repository = "https://github.com/abhi3700/dummy-json-rs"
 license = "MIT"
