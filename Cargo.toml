@@ -1,7 +1,9 @@
 [package]
 name = "dummy-json-rs"
-version = "0.1.0"
+description = "Dummy JSON API client in Rust"
+version = "1.0.0"
 edition = "2021"
+license = "MIT"
 
 [dependencies]
 once_cell = "1.20.2"
